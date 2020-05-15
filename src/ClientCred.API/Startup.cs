@@ -38,6 +38,16 @@ namespace ClientCred.API
                                             .RequireAuthenticatedUser()
                                             .Build();
             });
+            services.AddCors(options =>
+            {
+                // this defines a CORS policy called "default"
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins("http://localhost:5003")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
 
         }
 
@@ -49,6 +59,7 @@ namespace ClientCred.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("default");
             app.UseHttpsRedirection();
 
             app.UseRouting();

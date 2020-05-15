@@ -41,12 +41,15 @@ namespace ClientCred.EfIdServer
 
         private static void EnsureSeedData(IConfigurationDbContext context)
         {
-            if (!context.Clients.Any())
+            if (!(context.Clients.Any()) || (Config.Clients.Count() > context.Clients.Count()))
             {
                 Log.Debug("Clients being populated");
                 foreach (var client in Config.Clients.ToList())
                 {
-                    context.Clients.Add(client.ToEntity());
+                    if (!context.Clients.Any(x => x.ClientId == client.ClientId))
+                    {
+                        context.Clients.Add(client.ToEntity());
+                    }
                 }
                 context.SaveChanges();
             }

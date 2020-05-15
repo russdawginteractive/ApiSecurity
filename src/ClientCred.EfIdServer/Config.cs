@@ -35,7 +35,6 @@ namespace ClientCred.EfIdServer
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
-
                     AllowedScopes = { "auth.web.api" }
                 },
 
@@ -58,29 +57,29 @@ namespace ClientCred.EfIdServer
                 //},
 
                 //// SPA client using code flow + pkce
-                //new Client
-                //{
-                //    ClientId = "spa",
-                //    ClientName = "SPA Client",
-                //    ClientUri = "http://identityserver.io",
+                new Client
+                {
+                    ClientId = "spa",
+                    ClientName = "SPA Client",
+                    
 
-                //    AllowedGrantTypes = GrantTypes.Code,
-                //    RequirePkce = true,
-                //    RequireClientSecret = false,
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+                    RequireClientSecret = false,
 
-                //    RedirectUris =
-                //    {
-                //        "http://localhost:5002/index.html",
-                //        "http://localhost:5002/callback.html",
-                //        "http://localhost:5002/silent.html",
-                //        "http://localhost:5002/popup.html",
-                //    },
+                    RedirectUris =
+                    {
+                        "http://localhost:5003/index.html",
+                        "http://localhost:5003/callback.html",
+                        "http://localhost:5003/silent.html",
+                        "http://localhost:5003/popup.html",
+                    },
 
-                //    PostLogoutRedirectUris = { "http://localhost:5002/index.html" },
-                //    AllowedCorsOrigins = { "http://localhost:5002" },
+                    PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
+                    AllowedCorsOrigins = { "http://localhost:5003" },
 
-                //    AllowedScopes = { "openid", "profile", "auth.web.api" }
-                //}
+                    AllowedScopes = { "openid", "profile", "auth.web.api" }
+                }
             };
     }
 }
